@@ -17,8 +17,8 @@ import retrofit2.http.POST;
  * Description:
  **/
 public interface Api {
-    static final String BASE_URL="http://victorzy.top:8089/v1/api/";
-    @POST("login/byPwd")
+    static final String BASE_URL="http://victorzy.top:8081";
+    @POST("/v1/api/login/byPwd")
     Observable<Result> login(@Body RequestBody requestBody);
 //    @POST("api/user/registByMobile")
 //    Observable<Result<User>> register(@Body RequestBody requestBody);

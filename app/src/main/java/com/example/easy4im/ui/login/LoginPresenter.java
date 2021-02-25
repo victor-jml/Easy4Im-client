@@ -1,11 +1,15 @@
 package com.example.easy4im.ui.login;
 
+import android.util.JsonReader;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.easy4im.base.BasePresenter;
+import com.example.easy4im.bean.UserInfo;
 import com.example.easy4im.bean.req.UserLoginByPwdReqVo;
 import com.example.easy4im.bean.res.Result;
+import com.example.easy4im.bean.res.UserResVo;
 import com.example.easy4im.common.RetrofitManager;
 import com.example.easy4im.constant.ResultEnum;
 import com.example.easy4im.net.Api;
@@ -54,14 +58,16 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                             return;
                         }
                         mView.hideLoading();
-//                        if (ResultEnum.USER_LOGIN_SUCCESS.getCode().equals(result.)) {
-//                            Log.i("登录成功", JSON.toJSONString(result));
+                        if (ResultEnum.USER_LOGIN_SUCCESS.getCode().equals(result.getCode())) {
+                            Log.i("登录成功", JSON.toJSONString(result));
+                            Log.i("用户信息", JSON.toJSONString(result.getData()));
+
 //                            mView.onLoginSuccess(result.getData());
 //                            mView.jumpToMain();
-//                        } else {
-//                            Log.i("登录失败", JSON.toJSONString(result));
-//                            mView.onLoginError();
-//                        }
+                        } else {
+                            Log.i("登录失败", JSON.toJSONString(result));
+                            mView.onLoginError();
+                        }
                     }
 
                     @Override
